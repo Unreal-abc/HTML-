@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid" id="app">
+        <h1 class="text-center">填写个人信息</h1>
+        <div class="container" style="max-width: 500px;">
+            <form action="" class="needs-validation" novalidate>
+                <div class="form-floating mb-3 mt-3">
+                    <input type="text" class="form-control" id="name" placeholder="请输入姓名" name="name" v-model="name"
+                        required value="{{name}}">
+                    <label for="name">姓名</label>
+                    <div class="invalid-feedback">请输入用户名！</div>
+                </div>
+                <div class="form-group">
+                    <label for="a">健康信息</label>
+                    <div style="display: flex;flex-direction: row;align-items: center;justify-content: space-evenly;">
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="name" placeholder="请输入身高" name="name" required v-model="height" value="{{height}}">
+                            <label for="name">身高</label>
+                            <div class="invalid-feedback">请输入身高！</div>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="name" placeholder="请输入体重" name="name" required v-model="weight" value="{{weight}}">
+                            <label for="name">体重</label>
+                            <div class="invalid-feedback">请输入体重！</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>性别</label>
+                    <div style="display: flex;flex-direction: row;justify-content: space-evenly;">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1"
+                                checked>
+                            <label class="form-check-label" for="radio1">男</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">
+                            <label class="form-check-label" for="radio2">女</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex;flex-direction: column;">
+                    <label>喜欢的运动</label>
+                    <div style="display: flex;flex-direction: row;justify-content: space-evenly;">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something"
+                                checked>
+                            <label class="form-check-label" for="check1">篮球</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                value="something">
+                            <label class="form-check-label" for="check2">足球</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                value="something">
+                            <label class="form-check-label" for="check3">羽毛球</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="check4" name="option4"
+                                value="something">
+                            <label class="form-check-label" for="check4">跑步</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex;flex-direction: column;">
+                    <label>城市</label>
+                    <select class="form-select" required>
+                        <option>北京</option>
+                        <option>上海</option>
+                        <option>江苏</option>
+                        <option>苏州</option>
+                    </select>
+                </div>
+
+                <div style="display: flex;flex-direction: column;">
+
+                    <label>个人简介</label>
+                    <textarea type="text" class="form-control" id="email" placeholder="输入个人简介" name="email" required
+                        style="height: 150px;" v-model="text" aria-valuetext="{{text}}"></textarea>
+                    <div class="invalid-feedback">请输入个人简介！</div>
+                </div>
+
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="remember" required> 同意协议
+
+                        <div class="invalid-feedback">同意协议才能提交。</div>
+                    </label>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">提交</button>
+                    <button type="button" class="btn btn-light" @click="a">重置</button>
+
+                </div>
+            </form>
+        </div>
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+    
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">请确认信息</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+    
+                    <!-- 模态框内容 -->
+                    <div class="modal-body" v-model="name" v-model="height" v-model="weight">
+                        姓名：{{name}}<br>
+                        身高：{{height}}<br>
+                        体重：{{weight}}<br>
+                    </div>
+    
+                    <!-- 模态框底部 -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    // 如果验证不通过禁止提交表单
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // 获取表单验证样式
+            var forms = document.getElementsByClassName('needs-validation');
+            // 循环并禁止提交
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        $('#myModal').modal('show');
+                    }
+                    form.classList.add('was-validated');
+
+                }, false);
+            });
+        }, false);
+    })();
+
+    new Vue({
+        el: '#app',
+        data: {
+            name: "",
+            height: "",
+            weight: "",
+            sex: "",
+            sport: "",
+            city: "",
+            text: ""
+        },
+        methods: {
+            a(){
+                this.name="",
+                this.height="",
+                this.weight="",
+                this.text=""
+            }
+        },
+    })
+
+</script>
